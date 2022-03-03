@@ -1,0 +1,13 @@
+apiVersion: skaffold/v2beta25
+kind: Config
+metadata:
+  name: geocoding
+build:
+  artifacts:
+  - image: geocoder
+    context: .
+    docker: {}
+deploy:
+  kubectl:
+    manifests:
+    - job-onetime-success-k8.yaml
