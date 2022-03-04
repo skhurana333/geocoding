@@ -1,0 +1,18 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: geocoder-job
+spec:
+  template:
+    metadata:
+      labels:
+        app: geocoder-job
+    spec:
+      restartPolicy: Never
+
+      containers:
+        - name: geocoder
+          image: geocoder
+          imagePullPolicy: Never
+          command: ["java", "-jar", "target/geocoding-1.0-SNAPSHOT.jar", "abc"]
+  backoffLimit: 2

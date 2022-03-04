@@ -3,6 +3,7 @@ kind: Job
 metadata:
   name: geocoder-job
 spec:
+  completions: 5
   template:
     metadata:
       labels:
