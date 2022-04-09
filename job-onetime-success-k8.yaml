@@ -1,18 +1,17 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: geocoder-job-seq
+  name: geocoder-job
 spec:
-  completions: 5
   template:
     metadata:
       labels:
         app: geocoder-job
     spec:
       restartPolicy: OnFailure
+
       containers:
         - name: geocoder
           image: geocoder
           imagePullPolicy: Never
           command: ["java", "-jar", "target/geocoding-1.0-SNAPSHOT.jar"]
-

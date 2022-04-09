@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: geocoder-job
+  name: geocoder-job-parallel
 spec:
   completions: 5
   parallelism: 3

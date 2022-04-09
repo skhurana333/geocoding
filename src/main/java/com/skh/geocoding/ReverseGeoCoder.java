@@ -1,13 +1,16 @@
 package com.skh.geocoding;
 
+import java.io.FileWriter;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.nio.file.Paths;
 import java.time.Duration;
 
 public class ReverseGeoCoder {
     private Boolean isWrongData;
+    private Boolean writeToFile = Boolean.TRUE;
 
     public ReverseGeoCoder(Boolean isWrongData) {
       this.isWrongData = isWrongData;
@@ -47,5 +50,9 @@ public class ReverseGeoCoder {
   public static void main(String[] args) throws Exception {
     ReverseGeoCoder rgc = new ReverseGeoCoder(args.length > 0 ? Boolean.TRUE : Boolean.FALSE);
     System.out.println(rgc.reverseGeoCode());
+    if(rgc.writeToFile) {
+      FileWriter writer = new FileWriter("/mydata/op");
+      writer.write(rgc.reverseGeoCode() + "\n");
+    }
   }
 }
