@@ -12,7 +12,7 @@ import java.util.Random;
 
 public class ReverseGeoCoder {
     private Boolean isWrongData;
-    private Boolean writeToFile = Boolean.TRUE;
+    private Boolean writeToFile = Boolean.FALSE;
 
     public ReverseGeoCoder(Boolean isWrongData) {
       this.isWrongData = isWrongData;

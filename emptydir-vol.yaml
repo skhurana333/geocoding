@@ -3,10 +3,10 @@ kind: Pod
 metadata:
   name: geocoding-result-fetch
 spec:
-  restartPolicy: Never # never restart as writing to file one time
+  restartPolicy: Never # never restart as want to write to file one time
   containers:
   - image: geocoder 
-    command: ["java", "-jar", "target/geocoding-1.0-SNAPSHOT.jar"] #since its completable command,conainer will restart after finishing this command. Might see multiple container restarts (default is 6, total 1+6), used only for demo          
+    command: ["java", "-jar", "target/geocoding-1.0-SNAPSHOT.jar"] #since its completable command,conainer will restart after finishing it, but restartPolicyis never. So will write one time and will exit. 
     imagePullPolicy: IfNotPresent
     name: geocoder                   
     volumeMounts:                          
