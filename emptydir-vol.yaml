@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: geocoding-result-fetch
+spec:
+  restartPolicy: Never # never restart as writing to file one time
+  containers:
+  - image: geocoder 
+    command: ["java", "-jar", "target/geocoding-1.0-SNAPSHOT.jar"] #since its completable command,conainer will restart after finishing this command. Might see multiple container restarts (default is 6, total 1+6), used only for demo          
+    imagePullPolicy: IfNotPresent
+    name: geocoder                   
+    volumeMounts:                          
+    - name: data                           
+      mountPath: /mydata/               
+  - image: nginx:alpine                    
+    name: web-server                       
+    volumeMounts:                          
+    - name: data                  
+      mountPath: /usr/share/nginx/html     
+      readOnly: false # as a workaround need to change the permission to circumvent permission denied error 
+    ports:
+    - containerPort: 80
+      protocol: TCP
+  volumes:                                 
+  - name: data                           
+    emptyDir: {}   

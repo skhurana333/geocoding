@@ -1,5 +1,6 @@
 package com.skh.geocoding;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -7,6 +8,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.file.Paths;
 import java.time.Duration;
+import java.util.Random;
 
 public class ReverseGeoCoder {
     private Boolean isWrongData;
@@ -50,9 +52,14 @@ public class ReverseGeoCoder {
   public static void main(String[] args) throws Exception {
     ReverseGeoCoder rgc = new ReverseGeoCoder(args.length > 0 ? Boolean.TRUE : Boolean.FALSE);
     System.out.println(rgc.reverseGeoCode());
+    Random r = new Random();
+
     if(rgc.writeToFile) {
-      FileWriter writer = new FileWriter("/mydata/op");
+
+      FileWriter writer = new FileWriter("/mydata/op.txt");
       writer.write(rgc.reverseGeoCode() + "\n");
+      writer.close();
+      System.out.println("wrote to the file at /mydata");
     }
   }
 }
