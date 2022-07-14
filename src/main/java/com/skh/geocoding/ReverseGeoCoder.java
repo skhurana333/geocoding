@@ -12,13 +12,13 @@ import java.util.Random;
 
 public class ReverseGeoCoder {
     private Boolean isWrongData;
-    private Boolean writeToFile = Boolean.FALSE;
+    private Boolean writeToFile = Boolean.TRUE;
 
     public ReverseGeoCoder(Boolean isWrongData) {
       this.isWrongData = isWrongData;
     }
 
-  // latutude - 12.915860
+  // latitude - 12.915860
   // lingitude - 77.691750
   // https://developers.google.com/maps/documentation/geocoding/requests-reverse-geocoding
 
